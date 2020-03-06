@@ -1,0 +1,51 @@
+.IFJcode18
+DEFVAR GF@inpt
+MOVE GF@inpt string@
+DEFVAR GF@op1
+DEFVAR GF@op2
+DEFVAR GF@op3
+DEFVAR GF@result
+JUMP $main
+
+LABEL $main
+CREATEFRAME
+PUSHFRAME
+WRITE string@Zadejte\032cislo\032pro\032vypocet\032faktorialu:\032
+
+DEFVAR LF@a
+READ LF@a int
+PUSHS LF@a
+PUSHS int@0
+LTS
+POPS GF@result
+JUMPIFEQ $ELSE_0 GF@result bool@false
+WRITE string@\010Faktorial\032nelze\032spocitat\010
+
+JUMP $END_0
+LABEL $ELSE_0
+DEFVAR LF@vysl
+MOVE LF@vysl int@1
+LABEL $WHEAD_0
+PUSHS LF@a
+PUSHS int@0
+GTS
+POPS GF@result
+JUMPIFEQ $WEND_0 GF@result bool@false
+PUSHS LF@vysl
+PUSHS LF@a
+MULS
+POPS LF@vysl
+PUSHS LF@a
+PUSHS int@1
+SUBS
+POPS LF@a
+JUMP $WHEAD_0
+LABEL $WEND_0
+WRITE string@\010Vysledek\032je:
+WRITE LF@vysl
+WRITE string@\010
+
+LABEL $END_0
+
+POPFRAME
+CLEARS
